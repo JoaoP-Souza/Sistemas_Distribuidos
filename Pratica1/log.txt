@@ -1,0 +1,102 @@
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 2
+Digite o nome do game: batman
+Digite a plataforma do game: pc 
+Digite a quantidade de cópias: 3
+Game 'batman' cadastrado no sistema!
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 2
+Digite o nome do game: god of war
+Digite a plataforma do game: ps5
+Digite a quantidade de cópias: 7
+Game 'god of war' cadastrado no sistema!
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 2
+Digite o nome do game: dark souls
+Digite a plataforma do game: xbox
+Digite a quantidade de cópias: 5
+Game 'dark souls' cadastrado no sistema!
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 1
+Games cadastrados:
+{'game': 'batman', 'plataforma': 'pc', 'quantidade': 3}
+{'game': 'god of war', 'plataforma': 'ps5', 'quantidade': 7}
+{'game': 'dark souls', 'plataforma': 'xbox', 'quantidade': 5}
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 3
+Digite o nome do jogo que deseja consultar: batman
+Game: batman
+Plataforma: pc
+Quantidade: 3
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 4
+Digite o nome do game que deseja vender: god of war
+Digite a quantidade de cópias que deseja vender: 1   
+Venda realizada com sucesso! Quantidade restante: 6  
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+{'game': 'batman', 'plataforma': 'pc', 'quantidade': 3}
+{'game': 'god of war', 'plataforma': 'ps5', 'quantidade': 6}
+{'game': 'dark souls', 'plataforma': 'xbox', 'quantidade': 5}
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 5
+Até mais!
