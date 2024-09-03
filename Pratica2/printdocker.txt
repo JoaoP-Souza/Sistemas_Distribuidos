@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------------------------------------------------------------
+PRINT DO DOCKER RODANDO
+
+PS C:\Users\João Paulo\Desktop\p10\sistemas_distribuidos\pratica2> docker ps -a
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED          STATUS                        PORTS                    
+           NAMES
+990dab482e1e   sistema_estoque                       "python sistema_esto…"   20 minutes ago   Exited (0) 2 minutes ago                               

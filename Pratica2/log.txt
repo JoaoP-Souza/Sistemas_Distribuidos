@@ -1,0 +1,99 @@
+RODANDO O PROGRAMA
+
+PS C:\Users\João Paulo\Desktop\p10\sistemas_distribuidos\pratica2> docker run -it sistema_estoque
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 2
+Digite o nome do game: dark souls
+Digite a plataforma do game: PC
+Digite a quantidade de cópias: 6
+Game 'dark souls' cadastrado no sistema!
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 2
+Digite o nome do game: star wars
+Digite a plataforma do game: PC
+Digite a quantidade de cópias: 3
+Game 'star wars' cadastrado no sistema!
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 2
+Digite o nome do game: Call of Duty
+Digite a plataforma do game: xbox
+Digite a quantidade de cópias: 4
+Game 'Call of Duty' cadastrado no sistema!
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 1
+Games cadastrados:
+{'game': 'dark souls', 'plataforma': 'PC', 'quantidade': 6}
+{'game': 'star wars', 'plataforma': 'PC', 'quantidade': 3}
+{'game': 'Call of Duty', 'plataforma': 'xbox', 'quantidade': 4}
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 3
+Digite o nome do jogo que deseja consultar: star wars
+Game: star wars
+Plataforma: PC
+Venda realizada com sucesso! Quantidade restante: 1
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 1
+Games cadastrados:
+{'game': 'dark souls', 'plataforma': 'PC', 'quantidade': 6}
+{'game': 'star wars', 'plataforma': 'PC', 'quantidade': 1}
+{'game': 'Call of Duty', 'plataforma': 'xbox', 'quantidade': 4}
+------------------------------------------------------
+Bem vindo a MyGamestore!
+Selecione uma opção:
+1. Listar Games já cadastrados
+2. Cadastrar novo Game
+3. Consultar Game disponível
+4. Vender Game
+5. Sair
+------------------------------------------------------
+Escolha uma opção: 5
+Até mais!
+
