@@ -1,0 +1,281 @@
+{
+	"id": "cad5cf32-04af-4f44-872d-301dbd94283d",
+	"name": "C216-L1-PRATICA-4-Joao_GEC1661",
+	"timestamp": "2024-10-02T21:34:29.184Z",
+	"collection_id": "38406976-b4d6f005-13f7-44da-822e-d8a90f0d115e",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 14,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-10-02T21:34:27.674Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c4b181c5-a73f-41f7-a216-dafb20e76c0d",
+			"name": "Adicionar um novo jogo (POST)",
+			"url": "http://localhost:8000/api/v1/jogos/",
+			"time": 60,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response has success message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has success message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				60
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response has success message": true
+				}
+			]
+		},
+		{
+			"id": "88aa9100-f20d-44b0-9227-0e81337722fd",
+			"name": "Listar todos os jogos (GET)",
+			"url": "http://localhost:8000/api/v1/jogos/",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has array of games": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has array of games": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has array of games": true
+				}
+			]
+		},
+		{
+			"id": "032bb074-9cc6-490e-aba3-bf595395a56b",
+			"name": "Buscar jogo por ID (GET)",
+			"url": "http://localhost:8000/api/v1/jogos/2",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response contains game details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response contains game details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response contains game details": true
+				}
+			]
+		},
+		{
+			"id": "216ac614-946b-48a2-acb8-70fa4b5b8faa",
+			"name": "Atualizar jogo (PATCH)",
+			"url": "http://localhost:8000/api/v1/jogos/1",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Game updated successfully": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Game updated successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Game updated successfully": true
+				}
+			]
+		},
+		{
+			"id": "ac1b7eaa-f352-435f-bc24-587711a01042",
+			"name": "Vender um jogo (PUT)",
+			"url": "http://localhost:8000/api/v1/jogos/1/vender/",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Sale successful, quantity reduced": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Sale successful, quantity reduced": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Sale successful, quantity reduced": true
+				}
+			]
+		},
+		{
+			"id": "8ea77d29-9482-4808-88a8-63d9757cdc9c",
+			"name": "Remover jogo por ID (DELETE)",
+			"url": "http://localhost:8000/api/v1/jogos/1",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Game removed successfully": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Game removed successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Game removed successfully": true
+				}
+			]
+		},
+		{
+			"id": "9e6e7d72-366b-4a80-aa6d-1e4ef98b3fcc",
+			"name": "Resetar repositório de jogos (DELETE)",
+			"url": "http://localhost:8000/api/v1/jogos/",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Repository reset successful": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Repository reset successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Repository reset successful": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 113,
+	"collection": {
+		"requests": [
+			{
+				"id": "c4b181c5-a73f-41f7-a216-dafb20e76c0d",
+				"method": "POST"
+			},
+			{
+				"id": "88aa9100-f20d-44b0-9227-0e81337722fd",
+				"method": "GET"
+			},
+			{
+				"id": "032bb074-9cc6-490e-aba3-bf595395a56b",
+				"method": "GET"
+			},
+			{
+				"id": "216ac614-946b-48a2-acb8-70fa4b5b8faa",
+				"method": "PATCH"
+			},
+			{
+				"id": "ac1b7eaa-f352-435f-bc24-587711a01042",
+				"method": "PUT"
+			},
+			{
+				"id": "8ea77d29-9482-4808-88a8-63d9757cdc9c",
+				"method": "DELETE"
+			},
+			{
+				"id": "9e6e7d72-366b-4a80-aa6d-1e4ef98b3fcc",
+				"method": "DELETE"
+			}
+		]
+	}
+}
