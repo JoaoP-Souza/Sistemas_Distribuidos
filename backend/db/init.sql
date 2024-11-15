@@ -12,10 +12,12 @@ CREATE TABLE "jogos" (
 CREATE TABLE "vendas" (
     "id" SERIAL PRIMARY KEY,
     "jogo_id" INTEGER REFERENCES jogos(id) ON DELETE CASCADE,
+    "nome" VARCHAR(255),
     "quantidade_vendida" INTEGER NOT NULL,
     "valor_venda" FLOAT NOT NULL,
     "data_venda" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 INSERT INTO "jogos" ("nome", "plataforma", "quantidade", "preco") VALUES ('Counter Strike', 'PC', 8, 100.00);
 INSERT INTO "jogos" ("nome", "plataforma", "quantidade", "preco") VALUES ('Zelda', 'Nintendo Switch', 5, 300.00);

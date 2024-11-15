@@ -4,6 +4,8 @@
  # Install any dependencies needed to run your Python code
  RUN pip install flask
 
+ RUN pip install requests
+
  # Set the working directory to /app
  WORKDIR /app
 

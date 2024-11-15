@@ -14,25 +14,25 @@ async def get_database():
 app = FastAPI()
 
 # Modelo para adicionar novos jogos
-class Jogo(BaseModel):
+class jogo(BaseModel):
     id: Optional[int] = None
     nome: str
     plataforma: str
     quantidade: int
     preco: float
 
-class JogoBase(BaseModel):
+class jogoBase(BaseModel):
     nome: str
     plataforma: str
     quantidade: int
     preco: float
 
 # Modelo para venda de jogos
-class VendaJogo(BaseModel):
+class Vendajogo(BaseModel):
     quantidade: int
 
-# Modelo para atualizar atributos de um jogo 
-class AtualizarJogo(BaseModel):
+# Modelo para atualizar atributos de um jogo (exceto o ID)
+class Atualizarjogo(BaseModel):
     nome: Optional[str] = None
     plataforma: Optional[str] = None
     quantidade: Optional[int] = None
@@ -47,7 +47,7 @@ async def log_requests(request: Request, call_next):
     print(f"Path: {request.url.path}, Method: {request.method}, Process Time: {process_time:.4f}s")
     return response
 
-# Verifica se um jogo existe usado plataforma e nome do jogo
+# Função para verificar se o jogo existe usado plataforma e nome do jogo
 async def jogo_existe(nome: str, plataforma: str, conn: asyncpg.Connection):
     try:
         query = "SELECT * FROM jogos WHERE LOWER(nome) = LOWER($1) AND LOWER(plataforma) = LOWER($2)"
@@ -56,9 +56,9 @@ async def jogo_existe(nome: str, plataforma: str, conn: asyncpg.Connection):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Falha ao verificar se o jogo existe: {str(e)}")
 
-# Adiciona novo jogo
+# 1. Adicionar um novo jogo
 @app.post("/api/v1/jogos/", status_code=201)
-async def adicionar_jogo(jogo: JogoBase):
+async def adicionar_jogo(jogo: jogoBase):
     conn = await get_database()
     if await jogo_existe(jogo.nome, jogo.plataforma, conn):
         raise HTTPException(status_code=400, detail="jogo já existe.")
@@ -72,12 +72,12 @@ async def adicionar_jogo(jogo: JogoBase):
     finally:
         await conn.close()
 
-# Lista todos os jogos
-@app.get("/api/v1/jogos/", response_model=List[Jogo])
+# 2. Listar todos os jogos
+@app.get("/api/v1/jogos/", response_model=List[jogo])
 async def listar_jogos():
     conn = await get_database()
     try:
-        # Busca todos os jogos no banco de dados
+        # Buscar todos os jogos no banco de dados
         query = "SELECT * FROM jogos"
         rows = await conn.fetch(query)
         jogos = [dict(row) for row in rows]
@@ -85,12 +85,12 @@ async def listar_jogos():
     finally:
         await conn.close()
 
-# Busca jogo por ID
+# 3. Buscar jogo por ID
 @app.get("/api/v1/jogos/{jogo_id}")
 async def listar_jogo_por_id(jogo_id: int):
     conn = await get_database()
     try:
-        # Busca jogo por ID
+        # Buscar o jogo por ID
         query = "SELECT * FROM jogos WHERE id = $1"
         jogo = await conn.fetchrow(query, jogo_id)
         if jogo is None:
@@ -99,37 +99,37 @@ async def listar_jogo_por_id(jogo_id: int):
     finally:
         await conn.close()
 
-# Vende jogo
+# 4. Vender um jogo (reduzir quantidade no estoque)
 @app.put("/api/v1/jogos/{jogo_id}/vender/")
-async def vender_jogo(jogo_id: int, venda: VendaJogo):
+async def vender_jogo(jogo_id: int, venda: Vendajogo):
     conn = await get_database()
     try:
-        # Verifica se o jogo existe
+        # Verificar se o jogo existe
         query = "SELECT * FROM jogos WHERE id = $1"
         jogo = await conn.fetchrow(query, jogo_id)
         if jogo is None:
             raise HTTPException(status_code=404, detail="jogo não encontrado.")
 
-        # Verifica se a quantidade no estoque é suficiente
+        # Verificar se a quantidade no estoque é suficiente
         if jogo['quantidade'] < venda.quantidade:
             raise HTTPException(status_code=400, detail="Quantidade insuficiente no estoque.")
 
-        # Atualiza quantidade no banco de dados
+        # Atualizar a quantidade no banco de dados
         nova_quantidade = jogo['quantidade'] - venda.quantidade
         update_query = "UPDATE jogos SET quantidade = $1 WHERE id = $2"
         await conn.execute(update_query, nova_quantidade, jogo_id)
 
 
-        # Calcular valor total de uma venda
+        # Calcular o valor total da venda
         valor_venda = jogo['preco'] * venda.quantidade
-        # Registrar uma venda na tabela de vendas
+        # Registrar a venda na tabela de vendas
         insert_venda_query = """
-            INSERT INTO vendas (jogo_id, quantidade_vendida, valor_venda) 
-            VALUES ($1, $2, $3)
+            INSERT INTO vendas (jogo_id, nome, quantidade_vendida, valor_venda) 
+            VALUES ($1, $2, $3, $4)
         """
-        await conn.execute(insert_venda_query, jogo_id, venda.quantidade, valor_venda)
+        await conn.execute(insert_venda_query, jogo_id, jogo['nome'], venda.quantidade, valor_venda)
 
-        # Cria dicionário com dados atualizados
+        # Criar um novo dicionário com os dados atualizados
         jogo_atualizado = dict(jogo)
         jogo_atualizado['quantidade'] = nova_quantidade
 
@@ -137,18 +137,18 @@ async def vender_jogo(jogo_id: int, venda: VendaJogo):
     finally:
         await conn.close()
 
-# Atualiza jogo pelo ID
+# 5. Atualizar atributos de um jogo pelo ID (exceto o ID)
 @app.patch("/api/v1/jogos/{jogo_id}")
-async def atualizar_jogo(jogo_id: int, jogo_atualizacao: AtualizarJogo):
+async def atualizar_jogo(jogo_id: int, jogo_atualizacao: Atualizarjogo):
     conn = await get_database()
     try:
-        # Verificar se jogo existe
+        # Verificar se o jogo existe
         query = "SELECT * FROM jogos WHERE id = $1"
         jogo = await conn.fetchrow(query, jogo_id)
         if jogo is None:
             raise HTTPException(status_code=404, detail="jogo não encontrado.")
 
-        # Atualiza campos fornecidos
+        # Atualizar apenas os campos fornecidos
         update_query = """
             UPDATE jogos
             SET nome = COALESCE($1, nome),
@@ -169,45 +169,46 @@ async def atualizar_jogo(jogo_id: int, jogo_atualizacao: AtualizarJogo):
     finally:
         await conn.close()
 
-# Removendo jogos por ID
+# 6. Remover um jogo pelo ID
 @app.delete("/api/v1/jogos/{jogo_id}")
 async def remover_jogo(jogo_id: int):
     conn = await get_database()
     try:
-        # Verifica se jogo existe
+        # Verificar se o jogo existe
         query = "SELECT * FROM jogos WHERE id = $1"
         jogo = await conn.fetchrow(query, jogo_id)
         if jogo is None:
             raise HTTPException(status_code=404, detail="jogo não encontrado.")
 
-        # Remove jogo
+        # Remover o jogo do banco de dados
         delete_query = "DELETE FROM jogos WHERE id = $1"
         await conn.execute(delete_query, jogo_id)
         return {"message": "jogo removido com sucesso!"}
     finally:
         await conn.close()
 
-# Resetando repositorio de jogos
+# 7. Resetar banco de dados de jogos
 @app.delete("/api/v1/jogos/")
 async def resetar_jogos():
     init_sql = os.getenv("INIT_SQL", "db/init.sql")
     conn = await get_database()
     try:
-        # Le SQL
+        # Read SQL file contents
         with open(init_sql, 'r') as file:
             sql_commands = file.read()
-        # Executa Comandos SQL
+        # Execute SQL commands
         await conn.execute(sql_commands)
-        return {"message": "Banco de dados limpo com sucesso!!"}
+        return {"message": "Banco de dados limpo com sucesso!"}
     finally:
         await conn.close()
 
 
-# Listando Vendas
+# 8 . Listar vendas
 @app.get("/api/v1/vendas/")
 async def listar_vendas():
     conn = await get_database()
     try:
+        # Buscar todas as vendas no banco de dados
         query = "SELECT * FROM vendas"
         rows = await conn.fetch(query)
         vendas = [dict(row) for row in rows]
